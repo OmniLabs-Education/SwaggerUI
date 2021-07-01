@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Products",
+    "description": "Documentation from products api",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+
+  "paths": {
+    "/products/findByName": {
+      "get": {
+        "description": "Rota que busca produto pelo nome",
+        "sumary": "Busca de um produto pelo nome",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+
+    "/product": {
+      "post": {
+        "tags": ["Products"],
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "name": "bicicleta",
+                  "description": "bicicleta legal",
+                  "price": 200
+                }
+              }
+            }
+          }
+        },
+        
+      "responses": {
+        "401": {
+          "description": "Unauthorized"
+        },
+        "400": {
+          "description": "this product already exist"
+        },
+        "200": {
+          "description": "OK"
+        }
+      }
+      }
+    }
+  }
+}

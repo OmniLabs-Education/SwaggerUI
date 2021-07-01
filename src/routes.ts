@@ -14,7 +14,7 @@ interface IProducts {
 
 const products: IProducts[] = [];
 
-routes.get('/products/findByName', ensureAuthenticated, ((request: Request, response: Response) => {
+routes.get('/products/findByName', ((request: Request, response: Response) => {
   const {name} = request.query;
 
   const p = products.filter(e => e.name.includes(String(name)))
@@ -22,7 +22,7 @@ routes.get('/products/findByName', ensureAuthenticated, ((request: Request, resp
   return response.json(p)
 }))
 
-routes.get('/products/:id', ensureAuthenticated, ((request: Request, response: Response) => {
+routes.get('/products/:id', ((request: Request, response: Response) => {
   const {id} = request.params;
   const p = products.find(e => e.id === id)
 
@@ -54,7 +54,7 @@ routes.post('/product', ensureAuthenticated, ((request: Request, response: Respo
   return response.json(product)
 }))
 
-routes.put('/product:id', ensureAuthenticated, ((request: Request, response: Response) => {
+routes.put('/product/:id', ensureAuthenticated, ((request: Request, response: Response) => {
   const {id} = request.params;
   const {name, description, price} = request.body;
 
