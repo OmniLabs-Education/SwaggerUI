@@ -10,4 +10,4 @@ app.use(routes)
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
-app.listen(2222);
+app.listen(3333);

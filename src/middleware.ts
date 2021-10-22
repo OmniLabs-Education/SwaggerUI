@@ -12,6 +12,8 @@ export async function ensureAuthenticated(
 
   const [, user] = token.split(" ");
 
+  console.log(user)
+
   if(user === "admin") {
     return next()
   }
