@@ -19,6 +19,8 @@ routes.get('/products/findByName', ((request: Request, response: Response) => {
 
   const p = products.filter(e => e.name.includes(String(name)))
 
+  console.log(p)
+
   return response.json(p)
 }))
 
